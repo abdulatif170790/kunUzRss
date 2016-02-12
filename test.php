@@ -1,38 +1,30 @@
 <?php
 include_once('simplehtmldom/simple_html_dom.php');
 
-$html = file_get_html('http://app.kun.uz/mobapi/postview/index?id=123984&lang=uz_l');
+$html = file_get_html("http://app.kun.uz/mobapi/postview/index?id=123983&lang=uz_l");
 
+foreach($html->find('h4') as $e)
+    $e->outertext = '';
+foreach($html->find('hr') as $e)
+    $e->outertext = '';
+foreach($html->find('style') as $e)
+    $e->outertext = '';
+foreach($html->find('script') as $e)
+    $e->outertext = '';
+foreach($html->find('div.mini-news') as $e)
+    $e->outertext = '';
+foreach($html->find('div.ssk-lg') as $e)
+    $e->outertext = '';
+foreach($html->find('div.data') as $e)
+    $e->outertext = '';
+foreach($html->find('embed.advertisement') as $e)
+    $e->outertext = '';
+$content = "";
+foreach($html->find('div.container') as $e) {
+    $content = $e->outertext;
+    break;
+}
+echo $content;
 
-
-//// find all link
-//foreach($html->find('a') as $e)
-//    echo $e->href . '<br>';
-//
-//// find all image
-//foreach($html->find('img') as $e)
-//    echo $e->src . '<br>';
-//
-//// find all image with full tag
-//foreach($html->find('img') as $e)
-//    echo $e->outertext . '<br>';
-//
-//// find all div tags with id=gbar
-//foreach($html->find('div#gbar') as $e)
-//    echo $e->innertext . '<br>';
-
-// find all span tags with class=gb1
-foreach($html->find('div.container') as $e)
-    echo $e->outertext . '<br>';
-
-//// find all td tags with attribite align=center
-//foreach($html->find('td[align=center]') as $e)
-//    echo $e->innertext . '<br>';
-//
-//// extract text from table
-//echo $html->find('td[align="center"]', 1)->plaintext.'<br><hr>';
-//
-//// extract text from HTML
-//echo $html->plaintext;
 ?>
 
